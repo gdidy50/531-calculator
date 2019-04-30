@@ -16,21 +16,27 @@ import "./App.css";
 
 const Title = Typography;
 const styles = theme => ({
+  app: {
+    textAlign: "center",
+    width: "55%",
+    margin: "0 auto"
+  },
   title: {
     margin: 20
   },
   textFields: {
     display: "flex",
-    justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    justifyContent: "space-between"
   },
-  textField: {
-    width: 200,
-    margin: "0 10px"
+  tableContainer: {
+    display: "flex",
+    flexDirection: "column"
+  },
+  paper: {
+    margin: "10px 0"
   },
   button: {
-    width: 200,
-    margin: 10,
     height: 55
   }
 });
@@ -74,35 +80,31 @@ class App extends Component {
     const { rows, tableTitles } = this.state;
 
     return (
-      <div className="App">
+      <div className={classes.app}>
         <Title variant="h3" className={classes.title}>
           531 Calculator
         </Title>
         <div className={classes.textFields}>
           <TextField
             label="Bench Max"
-            className={classes.textField}
             value={this.state.benchMax}
             onChange={this.handleChange("benchMax")}
             variant="outlined"
           />
           <TextField
             label="Squat Max"
-            className={classes.textField}
             value={this.state.squatMax}
             onChange={this.handleChange("squatMax")}
             variant="outlined"
           />
           <TextField
             label="Deadlift Max"
-            className={classes.textField}
             value={this.state.deadliftMax}
             onChange={this.handleChange("deadliftMax")}
             variant="outlined"
           />
           <TextField
             label="Overhead Press Max"
-            className={classes.textField}
             value={this.state.overheadMax}
             onChange={this.handleChange("overheadMax")}
             variant="outlined"
@@ -111,15 +113,14 @@ class App extends Component {
             onClick={this.generateTotals}
             variant="outlined"
             color="primary"
-            className={classes.button}
-          >
+            className={classes.button}>
             Generate Totals
           </Button>
         </div>
-        <div className="table-container">
+        <div className={classes.tableContainer}>
           {rows.length > 0
             ? rows.map((row, i) => (
-                <Paper className={classes.root} key={i}>
+                <Paper className={classes.paper} key={i}>
                   <Table className={classes.table}>
                     <TableHead>
                       <TableRow>
